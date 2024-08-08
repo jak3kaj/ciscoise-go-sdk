@@ -9,29 +9,29 @@ import (
 	"github.com/go-resty/resty/v2"
 )
 
-type MiscService service
+type MonitoringService service
 
-type ResponseMiscGetActiveCount struct {
+type ResponseMonitoringGetActiveCount struct {
 	Count *int `xml:"count,omitempty"` //
 }
 
-type ResponseMiscGetActiveList struct {
+type ResponseMonitoringGetActiveList struct {
 	NoOfActiveSession *int `xml:"noOfActiveSession,omitempty"` //
 }
 
-type ResponseMiscGetSessionAuthList struct {
+type ResponseMonitoringGetSessionAuthList struct {
 	NoOfActiveSession *int `xml:"noOfActiveSession,omitempty"` //
 }
 
-type ResponseMiscGetPostureCount struct {
+type ResponseMonitoringGetPostureCount struct {
 	Count *int `xml:"count,omitempty"` //
 }
 
-type ResponseMiscGetProfilerCount struct {
+type ResponseMonitoringGetProfilerCount struct {
 	Count *int `xml:"count,omitempty"` //
 }
 
-type ResponseMiscGetMntVersion struct {
+type ResponseMonitoringGetMntVersion struct {
 	XMLName    xml.Name `xml:"product"`
 	Name       string   `xml:"name,omitempty"`         //
 	Version    string   `xml:"version,omitempty"`      //
@@ -42,7 +42,7 @@ type ResponseMiscGetMntVersion struct {
 /* ActiveCount
 
  */
-func (s *MiscService) GetActiveCount() (*ResponseMiscGetActiveCount, *resty.Response, error) {
+func (s *MonitoringService) GetActiveCount() (*ResponseMonitoringGetActiveCount, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/ActiveCount"
 
@@ -50,7 +50,7 @@ func (s *MiscService) GetActiveCount() (*ResponseMiscGetActiveCount, *resty.Resp
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetResult(&ResponseMiscGetActiveCount{}).
+		SetResult(&ResponseMonitoringGetActiveCount{}).
 		SetError(&Error).
 		Get(path)
 
@@ -65,7 +65,7 @@ func (s *MiscService) GetActiveCount() (*ResponseMiscGetActiveCount, *resty.Resp
 
 	getCSFRToken(response.Header())
 
-	result := response.Result().(*ResponseMiscGetActiveCount)
+	result := response.Result().(*ResponseMonitoringGetActiveCount)
 	return result, response, err
 
 }
@@ -74,7 +74,7 @@ func (s *MiscService) GetActiveCount() (*ResponseMiscGetActiveCount, *resty.Resp
 /* ActiveList
 
  */
-func (s *MiscService) GetActiveList() (*ResponseMiscGetActiveList, *resty.Response, error) {
+func (s *MonitoringService) GetActiveList() (*ResponseMonitoringGetActiveList, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/ActiveList"
 
@@ -82,7 +82,7 @@ func (s *MiscService) GetActiveList() (*ResponseMiscGetActiveList, *resty.Respon
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetResult(&ResponseMiscGetActiveList{}).
+		SetResult(&ResponseMonitoringGetActiveList{}).
 		SetError(&Error).
 		Get(path)
 
@@ -97,7 +97,7 @@ func (s *MiscService) GetActiveList() (*ResponseMiscGetActiveList, *resty.Respon
 
 	getCSFRToken(response.Header())
 
-	result := response.Result().(*ResponseMiscGetActiveList)
+	result := response.Result().(*ResponseMonitoringGetActiveList)
 	return result, response, err
 
 }
@@ -106,7 +106,7 @@ func (s *MiscService) GetActiveList() (*ResponseMiscGetActiveList, *resty.Respon
 /* Session/AuthList
 
  */
-func (s *MiscService) GetSessionAuthList() (*ResponseMiscGetSessionAuthList, *resty.Response, error) {
+func (s *MonitoringService) GetSessionAuthList() (*ResponseMonitoringGetSessionAuthList, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/AuthList/null/null"
 
@@ -114,7 +114,7 @@ func (s *MiscService) GetSessionAuthList() (*ResponseMiscGetSessionAuthList, *re
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetResult(&ResponseMiscGetSessionAuthList{}).
+		SetResult(&ResponseMonitoringGetSessionAuthList{}).
 		SetError(&Error).
 		Get(path)
 
@@ -129,7 +129,7 @@ func (s *MiscService) GetSessionAuthList() (*ResponseMiscGetSessionAuthList, *re
 
 	getCSFRToken(response.Header())
 
-	result := response.Result().(*ResponseMiscGetSessionAuthList)
+	result := response.Result().(*ResponseMonitoringGetSessionAuthList)
 	return result, response, err
 
 }
@@ -138,7 +138,7 @@ func (s *MiscService) GetSessionAuthList() (*ResponseMiscGetSessionAuthList, *re
 /* PostureCount
 
  */
-func (s *MiscService) GetPostureCount() (*ResponseMiscGetPostureCount, *resty.Response, error) {
+func (s *MonitoringService) GetPostureCount() (*ResponseMonitoringGetPostureCount, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/PostureCount"
 
@@ -146,7 +146,7 @@ func (s *MiscService) GetPostureCount() (*ResponseMiscGetPostureCount, *resty.Re
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetResult(&ResponseMiscGetPostureCount{}).
+		SetResult(&ResponseMonitoringGetPostureCount{}).
 		SetError(&Error).
 		Get(path)
 
@@ -161,7 +161,7 @@ func (s *MiscService) GetPostureCount() (*ResponseMiscGetPostureCount, *resty.Re
 
 	getCSFRToken(response.Header())
 
-	result := response.Result().(*ResponseMiscGetPostureCount)
+	result := response.Result().(*ResponseMonitoringGetPostureCount)
 	return result, response, err
 
 }
@@ -170,7 +170,7 @@ func (s *MiscService) GetPostureCount() (*ResponseMiscGetPostureCount, *resty.Re
 /* ProfilerCount
 
  */
-func (s *MiscService) GetProfilerCount() (*ResponseMiscGetProfilerCount, *resty.Response, error) {
+func (s *MonitoringService) GetProfilerCount() (*ResponseMonitoringGetProfilerCount, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/ProfilerCount"
 
@@ -178,7 +178,7 @@ func (s *MiscService) GetProfilerCount() (*ResponseMiscGetProfilerCount, *resty.
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetResult(&ResponseMiscGetProfilerCount{}).
+		SetResult(&ResponseMonitoringGetProfilerCount{}).
 		SetError(&Error).
 		Get(path)
 
@@ -193,7 +193,7 @@ func (s *MiscService) GetProfilerCount() (*ResponseMiscGetProfilerCount, *resty.
 
 	getCSFRToken(response.Header())
 
-	result := response.Result().(*ResponseMiscGetProfilerCount)
+	result := response.Result().(*ResponseMonitoringGetProfilerCount)
 	return result, response, err
 
 }
@@ -203,7 +203,7 @@ func (s *MiscService) GetProfilerCount() (*ResponseMiscGetProfilerCount, *resty.
 
 @param mac mac path parameter.
 */
-func (s *MiscService) GetSessionsByMac(mac string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsByMac(mac string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/MACAddress/{mac}"
 	path = strings.Replace(path, "{mac}", fmt.Sprintf("%v", mac), -1)
@@ -235,7 +235,7 @@ func (s *MiscService) GetSessionsByMac(mac string) (*resty.Response, error) {
 
 @param username username path parameter.
 */
-func (s *MiscService) GetSessionsByUsername(username string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsByUsername(username string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/UserName/{username}"
 	path = strings.Replace(path, "{username}", fmt.Sprintf("%v", username), -1)
@@ -267,7 +267,7 @@ func (s *MiscService) GetSessionsByUsername(username string) (*resty.Response, e
 
 @param nasipv4 nas_ipv4 path parameter.
 */
-func (s *MiscService) GetSessionsByNasIP(nasipv4 string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/IPAddress/{nas_ipv4}"
 	path = strings.Replace(path, "{nas_ipv4}", fmt.Sprintf("%v", nasipv4), -1)
@@ -299,7 +299,7 @@ func (s *MiscService) GetSessionsByNasIP(nasipv4 string) (*resty.Response, error
 
 @param endpointipv4 endpoint_ipv4 path parameter.
 */
-func (s *MiscService) GetSessionsByEndpointIP(endpointipv4 string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/EndPointIPAddress/{endpoint_ipv4}"
 	path = strings.Replace(path, "{endpoint_ipv4}", fmt.Sprintf("%v", endpointipv4), -1)
@@ -331,7 +331,7 @@ func (s *MiscService) GetSessionsByEndpointIP(endpointipv4 string) (*resty.Respo
 
 @param sessionTypeID session_id path parameter.
 */
-func (s *MiscService) GetSessionsBySessionID(sessionTypeID string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/Active/SessionID/{session_id}/0"
 	path = strings.Replace(path, "{session_id}", fmt.Sprintf("%v", sessionTypeID), -1)
@@ -362,7 +362,7 @@ func (s *MiscService) GetSessionsBySessionID(sessionTypeID string) (*resty.Respo
 /* MNT Version
 
  */
-func (s *MiscService) GetMntVersion() (*ResponseMiscGetMntVersion, *resty.Response, error) {
+func (s *MonitoringService) GetMntVersion() (*ResponseMonitoringGetMntVersion, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Version"
 
@@ -370,7 +370,7 @@ func (s *MiscService) GetMntVersion() (*ResponseMiscGetMntVersion, *resty.Respon
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetResult(&ResponseMiscGetMntVersion{}).
+		SetResult(&ResponseMonitoringGetMntVersion{}).
 		SetError(&Error).
 		Get(path)
 
@@ -385,7 +385,7 @@ func (s *MiscService) GetMntVersion() (*ResponseMiscGetMntVersion, *resty.Respon
 
 	getCSFRToken(response.Header())
 
-	result := response.Result().(*ResponseMiscGetMntVersion)
+	result := response.Result().(*ResponseMonitoringGetMntVersion)
 	return result, response, err
 
 }
@@ -394,7 +394,7 @@ func (s *MiscService) GetMntVersion() (*ResponseMiscGetMntVersion, *resty.Respon
 /* FailureReasons
 
  */
-func (s *MiscService) GetFailureReasons() (*resty.Response, error) {
+func (s *MonitoringService) GetFailureReasons() (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/FailureReasons"
 
@@ -427,7 +427,7 @@ func (s *MiscService) GetFailureReasons() (*resty.Response, error) {
 @param SECONDS SECONDS path parameter.
 @param RECORDS RECORDS path parameter.
 */
-func (s *MiscService) GetAuthenticationStatusByMac(MAC string, SECONDS string, RECORDS string) (*resty.Response, error) {
+func (s *MonitoringService) GetAuthenticationStatusByMac(MAC string, SECONDS string, RECORDS string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/AuthStatus/MACAddress/{MAC}/{SECONDS}/{RECORDS}/All"
 	path = strings.Replace(path, "{MAC}", fmt.Sprintf("%v", MAC), -1)
@@ -463,7 +463,7 @@ func (s *MiscService) GetAuthenticationStatusByMac(MAC string, SECONDS string, R
 @param ENDPOINTMAC ENDPOINT_MAC path parameter.
 @param REAuthTYPE REAUTH_TYPE path parameter.
 */
-func (s *MiscService) SessionReauthenticationByMac(PSNNAME string, ENDPOINTMAC string, REAuthTYPE string) (*resty.Response, error) {
+func (s *MonitoringService) SessionReauthenticationByMac(PSNNAME string, ENDPOINTMAC string, REAuthTYPE string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/CoA/Reauth/{PSN_NAME}/{ENDPOINT_MAC}/{REAUTH_TYPE}"
 	path = strings.Replace(path, "{PSN_NAME}", fmt.Sprintf("%v", PSNNAME), -1)
@@ -501,7 +501,7 @@ func (s *MiscService) SessionReauthenticationByMac(PSNNAME string, ENDPOINTMAC s
 @param DISCONNECTTYPE DISCONNECT_TYPE path parameter.
 @param NASIPV4 NAS_IPV4 path parameter.
 */
-func (s *MiscService) SessionDisconnect(ENDPOINTIP string, PSNNAME string, MAC string, DISCONNECTTYPE string, NASIPV4 string) (*resty.Response, error) {
+func (s *MonitoringService) SessionDisconnect(ENDPOINTIP string, PSNNAME string, MAC string, DISCONNECTTYPE string, NASIPV4 string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/CoA/Disconnect>/{PSN_NAME}/{MAC}/{DISCONNECT_TYPE}/{NAS_IPV4}/{{ENDPOINT_IP}}"
 	path = strings.Replace(path, "{ENDPOINT_IP}", fmt.Sprintf("%v", ENDPOINTIP), -1)
@@ -538,7 +538,7 @@ func (s *MiscService) SessionDisconnect(ENDPOINTIP string, PSNNAME string, MAC s
 @param mac mac path parameter.
 @param duration duration path parameter.
 */
-func (s *MiscService) GetAccountStatusByMac(mac string, duration string) (*resty.Response, error) {
+func (s *MonitoringService) GetAccountStatusByMac(mac string, duration string) (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/AcctStatus/MACAddress/{mac}/{duration}"
 	path = strings.Replace(path, "{mac}", fmt.Sprintf("%v", mac), -1)
@@ -570,7 +570,7 @@ func (s *MiscService) GetAccountStatusByMac(mac string, duration string) (*resty
 /* Delete All Sessions
 
  */
-func (s *MiscService) DeleteAllSessions() (*resty.Response, error) {
+func (s *MonitoringService) DeleteAllSessions() (*resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/Delete/All"
 
