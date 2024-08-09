@@ -338,12 +338,12 @@ func (s *MonitoringService) GetSessionsByMac(mac string) (*ResponseMonitoringGet
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetSessionsByMac")
+		return nil, response, fmt.Errorf("error with operation GetSessionsByMac")
 	}
 
 	getCSFRToken(response.Header())
@@ -372,12 +372,12 @@ func (s *MonitoringService) GetSessionsByUsername(username string) (*ResponseMon
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetSessionsByUsername")
+		return nil, response, fmt.Errorf("error with operation GetSessionsByUsername")
 	}
 
 	getCSFRToken(response.Header())
@@ -406,12 +406,12 @@ func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*ResponseMonitor
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetSessionsByNasIp")
+		return nil, response, fmt.Errorf("error with operation GetSessionsByNasIp")
 	}
 
 	getCSFRToken(response.Header())
@@ -440,12 +440,12 @@ func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*Respo
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetSessionsByEndpointIp")
+		return nil, response, fmt.Errorf("error with operation GetSessionsByEndpointIp")
 	}
 
 	getCSFRToken(response.Header())
@@ -474,12 +474,12 @@ func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*Respo
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetSessionsBySessionId")
+		return nil, response, fmt.Errorf("error with operation GetSessionsBySessionId")
 	}
 
 	getCSFRToken(response.Header())
