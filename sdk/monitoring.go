@@ -149,7 +149,7 @@ type ResponseMonitoringGetProfilerCount struct {
 }
 
 type ResponseMonitoringGetDetailedSessions struct {
-	SessionParameters []*SessionParameters `xml:"activeSession"`
+	SessionParameters []*SessionParameters `xml:"sessionParameters"`
 }
 
 type ResponseMonitoringGetMntVersion struct {
