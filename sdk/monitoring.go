@@ -11,16 +11,133 @@ import (
 
 type MonitoringService service
 
+type Session struct {
+	Server            *string   `xml:"server"`
+	CallingStationID  *string   `xml:"calling_station_id"`
+	AuditSessionID    *string   `xml:"audit_session_id"`
+	AcctSessionID     *string   `xml:"acct_session_id"`
+	NASIPAddress      *string   `xml:"nas_ip_address"`
+	NASIPv6Address    *string   `xml:"nas_ipv6_address"`
+	UserName          *string   `xml:"user_name"`
+	FramedIPv6Address []*string `xml:"framed_ipv6_address>ipv6_address"`
+}
+
+type SessionParameters struct {
+	Passed                      *string   `xml:"passed"`
+	Failed                      *string   `xml:"failed"`
+	UserName                    *string   `xml:"user_name"`
+	NASIPAddress                *string   `xml:"nas_ip_address"`
+	FailureReason               *string   `xml:"failure_reason"`
+	CallingStationId            *string   `xml:"calling_station_id"`
+	NASPort                     *string   `xml:"nas_port"`
+	IdentityGroup               *string   `xml:"identity_group"`
+	NetworkDeviceName           *string   `xml:"network_device_name"`
+	ACSServer                   *string   `xml:"acs_server"`
+	AuthenProtocol              *string   `xml:"authen_protocol"`
+	FramedIPAddress             []*string `xml:"framed_ip_address>ip_address"`
+	NetworkDeviceGroups         *string   `xml:"network_device_groups"`
+	AccessService               *string   `xml:"access_service"`
+	AuthACSTimestamp            *string   `xml:"auth_acs_timestamp"`
+	AuthenticationMethod        *string   `xml:"authentication_method"`
+	ExecutionSteps              *string   `xml:"execution_steps"`
+	RadiusResponse              *string   `xml:"radius_response"`
+	AuditSessionID              *string   `xml:"audit_session_id"`
+	NASIdentifier               *string   `xml:"nas_identifier"`
+	NASPortID                   *string   `xml:"nas_port_id"`
+	NACPolicyCompliance         *string   `xml:"nac_policy_compliance"`
+	AuthID                      *int      `xml:"auth_id"`
+	AuthACSViewTimestamp        *string   `xml:"auth_acsview_timestamp"`
+	MessageCode                 *string   `xml:"message_code"`
+	ACSSessionID                *string   `xml:"acs_session_id"`
+	ServiceSelectionPolicy      *string   `xml:"service_selection_policy"`
+	AuthorizationPolicy         *string   `xml:"authorization_policy"`
+	IdentityStore               *string   `xml:"identity_store"`
+	Response                    *string   `xml:"response"`
+	ServiceType                 *string   `xml:"service_type"`
+	CTSSecurityGroup            *string   `xml:"cts_security_group"`
+	UseCase                     *string   `xml:"use_case"`
+	CiscoAVPair                 *string   `xml:"cisco_av_pair"`
+	ADDomain                    *string   `xml:"ad_domain"`
+	ACSUsername                 *string   `xml:"acs_username"`
+	RadiusUsername              *string   `xml:"radius_username"`
+	NACRole                     *string   `xml:"nac_role"`
+	NACUsername                 *string   `xml:"nac_username"`
+	NACPostureToken             *string   `xml:"nac_posture_token"`
+	NACRadiusIsUserAuth         *string   `xml:"nac_radius_is_user_auth"`
+	SelectedPostureServer       *string   `xml:"selected_posture_server"`
+	SelectedIdentityStore       *string   `xml:"selected_identity_store"`
+	AuthenticationIdentityStore *string   `xml:"authentication_identity_store"`
+	AZNExpPolMatchedRule        *string   `xml:"azn_exp_pol_matched_rule"`
+	ExtPolServerMatchedRule     *string   `xml:"ext_pol_server_matched_rule"`
+	GRPMappingPolMatchedRule    *string   `xml:"grp_mapping_pol_matched_rule"`
+	IdentityPolicyMatchedRule   *string   `xml:"identity_policy_matched_rule"`
+	NASPortType                 *string   `xml:"nas_port_type"`
+	QueryIdentityStores         *string   `xml:"query_identity_stores"`
+	SelectedAZNProfiles         *string   `xml:"selected_azn_profiles"`
+	SelExpAZNProfiles           *string   `xml:"sel_exp_azn_profiles"`
+	SelectedQueryIdentityStores *string   `xml:"selected_query_identity_stores"`
+	EAPTunnel                   *string   `xml:"eap_tunnel"`
+	TunnelDetails               *string   `xml:"tunnel_details"`
+	Ciscoh323Attributes         *string   `xml:"cisco_h323_attributes"`
+	CiscoSSGAttributes          *string   `xml:"cisco_ssg_attributes"`
+	OtherAttributes             *string   `xml:"other_attributes"`
+	ResponseTime                *int      `xml:"response_time"`
+	NADFailure                  *string   `xml:"nad_failure"`
+	DestinationIPAddress        *string   `xml:"destination_ip_address"`
+	AcctID                      *int      `xml:"acct_id"`
+	AcctACSTimestamp            *string   `xml:"acct_acs_timestamp"`
+	AcctACSViewTimestamp        *string   `xml:"acct_acsview_timestamp"`
+	AcctSessionID               *string   `xml:"acct_session_id"`
+	AcctStatusType              *string   `xml:"acct_status_type"`
+	AcctSessionTime             *int      `xml:"acct_session_time"`
+	AcctInputOctets             *string   `xml:"acct_input_octets"`
+	AcctOutputOctets            *string   `xml:"acct_output_octets"`
+	AcctInputPackets            *int      `xml:"acct_input_packets"`
+	AcctOutputPackets           *int      `xml:"acct_output_packets"`
+	AcctClass                   *string   `xml:"acct_class"`
+	AcctTerminateCause          *string   `xml:"acct_terminate_cause"`
+	AcctMultiSessionID          *string   `xml:"acct_multi_session_id"`
+	AcctAuthentic               *string   `xml:"acct_authentic"`
+	TerminationAction           *string   `xml:"termination_action"`
+	SessionTimeout              *string   `xml:"session_timeout"`
+	IdleTimeout                 *string   `xml:"idle_timeout"`
+	AcctInterimInterval         *string   `xml:"acct_interim_interval"`
+	AcctDelayTime               *string   `xml:"acct_delay_time"`
+	EventTimestamp              *string   `xml:"event_timestamp"`
+	AcctTunnelConnection        *string   `xml:"acct_tunnel_connection"`
+	AcctTunnelPacketLost        *string   `xml:"acct_tunnel_packet_lost"`
+	SecurityGroup               *string   `xml:"security_group"`
+	Ciscoh323SetupTime          *string   `xml:"cisco_h323_setup_time"`
+	Ciscoh323ConnectTime        *string   `xml:"cisco_h323_connect_time"`
+	Ciscoh323DisconnectTime     *string   `xml:"cisco_h323_disconnect_time"`
+	FramedProtocol              *string   `xml:"framed_protocol"`
+	Started                     *string   `xml:"started"`
+	Stopped                     *string   `xml:"stopped"`
+	CkptID                      *int      `xml:"ckpt_id"`
+	Type                        *int      `xml:"type"`
+	NADACSViewTimestamp         *string   `xml:"nad_acsview_timestamp"`
+	VLAN                        *string   `xml:"vlan"`
+	DACL                        *string   `xml:"dacl"`
+	AuthenticationType          *string   `xml:"authentication_type"`
+	InterfaceName               *string   `xml:"interface_name"`
+	Reason                      *string   `xml:"reason"`
+	EndpointPolicy              *string   `xml:"endpoint_policy"`
+	FramedIPv6Address           []*string `xml:"framed_ipv6_address>ipv6_address"`
+	NASIPv6Address              *string   `xml:"nas_ipv6_address"`
+}
+
 type ResponseMonitoringGetActiveCount struct {
 	Count *int `xml:"count,omitempty"` //
 }
 
 type ResponseMonitoringGetActiveList struct {
-	NoOfActiveSession *int `xml:"noOfActiveSession,omitempty"` //
+	NoOfActiveSession *int       `xml:"noOfActiveSession,attr"`
+	ActiveSessions    []*Session `xml:"activeSession"`
 }
 
 type ResponseMonitoringGetSessionAuthList struct {
-	NoOfActiveSession *int `xml:"noOfActiveSession,omitempty"` //
+	NoOfActiveSession *int       `xml:"noOfActiveSession,attr"` //
+	ActiveSessions    []*Session `xml:"activeSession"`
 }
 
 type ResponseMonitoringGetPostureCount struct {
@@ -29,6 +146,10 @@ type ResponseMonitoringGetPostureCount struct {
 
 type ResponseMonitoringGetProfilerCount struct {
 	Count *int `xml:"count,omitempty"` //
+}
+
+type ResponseMonitoringGetDetailedSessions struct {
+	SessionParameters []*SessionParameters `xml:"activeSession"`
 }
 
 type ResponseMonitoringGetMntVersion struct {
@@ -203,7 +324,7 @@ func (s *MonitoringService) GetProfilerCount() (*ResponseMonitoringGetProfilerCo
 
 @param mac mac path parameter.
 */
-func (s *MonitoringService) GetSessionsByMac(mac string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsByMac(mac string) (*ResponseMonitoringGetDetailedSessions, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/MACAddress/{mac}"
 	path = strings.Replace(path, "{mac}", fmt.Sprintf("%v", mac), -1)
@@ -212,6 +333,7 @@ func (s *MonitoringService) GetSessionsByMac(mac string) (*resty.Response, error
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
+		SetResult(&ResponseMonitoringGetDetailedSessions{}).
 		SetError(&Error).
 		Get(path)
 
@@ -226,7 +348,8 @@ func (s *MonitoringService) GetSessionsByMac(mac string) (*resty.Response, error
 
 	getCSFRToken(response.Header())
 
-	return response, err
+	result := response.Result().(*ResponseMonitoringGetDetailedSessions)
+	return result, response, err
 
 }
 
@@ -235,7 +358,7 @@ func (s *MonitoringService) GetSessionsByMac(mac string) (*resty.Response, error
 
 @param username username path parameter.
 */
-func (s *MonitoringService) GetSessionsByUsername(username string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsByUsername(username string) (*ResponseMonitoringGetDetailedSessions, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/UserName/{username}"
 	path = strings.Replace(path, "{username}", fmt.Sprintf("%v", username), -1)
@@ -244,6 +367,7 @@ func (s *MonitoringService) GetSessionsByUsername(username string) (*resty.Respo
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
+		SetResult(&ResponseMonitoringGetDetailedSessions{}).
 		SetError(&Error).
 		Get(path)
 
@@ -258,7 +382,8 @@ func (s *MonitoringService) GetSessionsByUsername(username string) (*resty.Respo
 
 	getCSFRToken(response.Header())
 
-	return response, err
+	result := response.Result().(*ResponseMonitoringGetDetailedSessions)
+	return result, response, err
 
 }
 
@@ -267,7 +392,7 @@ func (s *MonitoringService) GetSessionsByUsername(username string) (*resty.Respo
 
 @param nasipv4 nas_ipv4 path parameter.
 */
-func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*ResponseMonitoringGetDetailedSessions, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/IPAddress/{nas_ipv4}"
 	path = strings.Replace(path, "{nas_ipv4}", fmt.Sprintf("%v", nasipv4), -1)
@@ -276,6 +401,7 @@ func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*resty.Response,
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
+		SetResult(&ResponseMonitoringGetDetailedSessions{}).
 		SetError(&Error).
 		Get(path)
 
@@ -290,7 +416,8 @@ func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*resty.Response,
 
 	getCSFRToken(response.Header())
 
-	return response, err
+	result := response.Result().(*ResponseMonitoringGetDetailedSessions)
+	return result, response, err
 
 }
 
@@ -299,7 +426,7 @@ func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*resty.Response,
 
 @param endpointipv4 endpoint_ipv4 path parameter.
 */
-func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*ResponseMonitoringGetDetailedSessions, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/EndPointIPAddress/{endpoint_ipv4}"
 	path = strings.Replace(path, "{endpoint_ipv4}", fmt.Sprintf("%v", endpointipv4), -1)
@@ -308,6 +435,7 @@ func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*resty
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
+		SetResult(&ResponseMonitoringGetDetailedSessions{}).
 		SetError(&Error).
 		Get(path)
 
@@ -322,7 +450,8 @@ func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*resty
 
 	getCSFRToken(response.Header())
 
-	return response, err
+	result := response.Result().(*ResponseMonitoringGetDetailedSessions)
+	return result, response, err
 
 }
 
@@ -331,7 +460,7 @@ func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*resty
 
 @param sessionTypeID session_id path parameter.
 */
-func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*resty.Response, error) {
+func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*ResponseMonitoringGetDetailedSessions, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/Active/SessionID/{session_id}/0"
 	path = strings.Replace(path, "{session_id}", fmt.Sprintf("%v", sessionTypeID), -1)
@@ -340,6 +469,7 @@ func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*resty
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
+		SetResult(&ResponseMonitoringGetDetailedSessions{}).
 		SetError(&Error).
 		Get(path)
 
@@ -354,7 +484,8 @@ func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*resty
 
 	getCSFRToken(response.Header())
 
-	return response, err
+	result := response.Result().(*ResponseMonitoringGetDetailedSessions)
+	return result, response, err
 
 }
 
