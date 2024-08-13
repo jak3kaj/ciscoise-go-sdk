@@ -159,6 +159,19 @@ type ResponseMonitoringGetMntVersion struct {
 	TypeOfNode *int     `xml:"type_of_node,omitempty"` //
 }
 
+type MntRestResult struct {
+	HTTPCode           string   `xml:"http-code"`
+	CPMCode            string   `xml:"cpm-code"`
+	Description        string   `xml:"description"`
+	ModuleName         string   `xml:"module-name"`
+	InternalErrorInfo  string   `xml:"internal-error-info"`
+	RequestedOperation string   `xml:"requested-operation"`
+	ResourceID         string   `xml:"resource-id"`
+	ResourceName       string   `xml:"resource-name"`
+	ResourceType       string   `xml:"resource-type"`
+	Status             string   `xml:"status"`
+}
+
 //GetActiveCount ActiveCount
 /* ActiveCount
 
@@ -334,7 +347,7 @@ func (s *MonitoringService) GetSessionsByMac(mac string) (*ResponseMonitoringGet
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
 		SetResult(&ResponseMonitoringGetDetailedSessions{}).
-		SetError(&Error).
+		SetError(MntRestResult{}).
 		Get(path)
 
 	if err != nil {
@@ -343,7 +356,13 @@ func (s *MonitoringService) GetSessionsByMac(mac string) (*ResponseMonitoringGet
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetSessionsByMac")
+		r := response.StatusCode()
+		if (r >= 500 && r < 600 ) {
+			err := response.Error().(*MntRestResult)
+			return nil, response, fmt.Errorf("error with operation GetSessionsByMac - %s - %s\n", err.Description, err.InternalErrorInfo)
+		} else {
+			return nil, response, fmt.Errorf("error with operation GetSessionsByMac - HTTP Status: %d\n", r)
+		}
 	}
 
 	getCSFRToken(response.Header())
@@ -368,7 +387,7 @@ func (s *MonitoringService) GetSessionsByUsername(username string) (*ResponseMon
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
 		SetResult(&ResponseMonitoringGetDetailedSessions{}).
-		SetError(&Error).
+		SetError(MntRestResult{}).
 		Get(path)
 
 	if err != nil {
@@ -377,7 +396,13 @@ func (s *MonitoringService) GetSessionsByUsername(username string) (*ResponseMon
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetSessionsByUsername")
+		r := response.StatusCode()
+		if (r >= 500 && r < 600 ) {
+			err := response.Error().(*MntRestResult)
+			return nil, response, fmt.Errorf("error with operation GetSessionsByUsername - %s - %s\n", err.Description, err.InternalErrorInfo)
+		} else {
+			return nil, response, fmt.Errorf("error with operation GetSessionsByUsername - HTTP Status: %d\n", r)
+		}
 	}
 
 	getCSFRToken(response.Header())
@@ -402,7 +427,7 @@ func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*ResponseMonitor
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
 		SetResult(&ResponseMonitoringGetDetailedSessions{}).
-		SetError(&Error).
+		SetError(MntRestResult{}).
 		Get(path)
 
 	if err != nil {
@@ -411,7 +436,13 @@ func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*ResponseMonitor
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetSessionsByNasIp")
+		r := response.StatusCode()
+		if (r >= 500 && r < 600 ) {
+			err := response.Error().(*MntRestResult)
+			return nil, response, fmt.Errorf("error with operation GetSessionsByNasIP - %s - %s\n", err.Description, err.InternalErrorInfo)
+		} else {
+			return nil, response, fmt.Errorf("error with operation GetSessionsByNasIP - HTTP Status: %d\n", r)
+		}
 	}
 
 	getCSFRToken(response.Header())
@@ -436,7 +467,7 @@ func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*Respo
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
 		SetResult(&ResponseMonitoringGetDetailedSessions{}).
-		SetError(&Error).
+		SetError(MntRestResult{}).
 		Get(path)
 
 	if err != nil {
@@ -445,7 +476,13 @@ func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*Respo
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetSessionsByEndpointIp")
+		r := response.StatusCode()
+		if (r >= 500 && r < 600 ) {
+			err := response.Error().(*MntRestResult)
+			return nil, response, fmt.Errorf("error with operation GetSessionsByEndpointIP - %s - %s\n", err.Description, err.InternalErrorInfo)
+		} else {
+			return nil, response, fmt.Errorf("error with operation GetSessionsByEndpointIP - HTTP Status: %d\n", r)
+		}
 	}
 
 	getCSFRToken(response.Header())
@@ -470,7 +507,7 @@ func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*Respo
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
 		SetResult(&ResponseMonitoringGetDetailedSessions{}).
-		SetError(&Error).
+		SetError(MntRestResult{}).
 		Get(path)
 
 	if err != nil {
@@ -479,7 +516,13 @@ func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*Respo
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetSessionsBySessionId")
+		r := response.StatusCode()
+		if (r >= 500 && r < 600 ) {
+			err := response.Error().(*MntRestResult)
+			return nil, response, fmt.Errorf("error with operation GetSessionsBySessionID - %s - %s\n", err.Description, err.InternalErrorInfo)
+		} else {
+			return nil, response, fmt.Errorf("error with operation GetSessionsBySessionID - HTTP Status: %d\n", r)
+		}
 	}
 
 	getCSFRToken(response.Header())
@@ -558,7 +601,7 @@ func (s *MonitoringService) GetFailureReasons() (*resty.Response, error) {
 @param SECONDS SECONDS path parameter.
 @param RECORDS RECORDS path parameter.
 */
-func (s *MonitoringService) GetAuthenticationStatusByMac(MAC string, SECONDS string, RECORDS string) (*resty.Response, error) {
+func (s *MonitoringService) GetAuthenticationStatusByMac(MAC string, SECONDS string, RECORDS string) (*ResponseMonitoringGetDetailedSessions, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/AuthStatus/MACAddress/{MAC}/{SECONDS}/{RECORDS}/All"
 	path = strings.Replace(path, "{MAC}", fmt.Sprintf("%v", MAC), -1)
@@ -569,21 +612,28 @@ func (s *MonitoringService) GetAuthenticationStatusByMac(MAC string, SECONDS str
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetError(&Error).
+		SetError(MntRestResult{}).
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetAuthenticationStatusByMac")
+		r := response.StatusCode()
+		if (r >= 500 && r < 600 ) {
+			err := response.Error().(*MntRestResult)
+			return nil, response, fmt.Errorf("error with operation GetAuthenticationStatusByMac - %s - %s\n", err.Description, err.InternalErrorInfo)
+		} else {
+			return nil, response, fmt.Errorf("error with operation GetAuthenticationStatusByMac - HTTP Status: %d\n", r)
+		}
 	}
 
 	getCSFRToken(response.Header())
 
-	return response, err
+	result := response.Result().(*ResponseMonitoringGetDetailedSessions)
+	return result, response, err
 
 }
 
@@ -605,7 +655,7 @@ func (s *MonitoringService) SessionReauthenticationByMac(PSNNAME string, ENDPOIN
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetError(&Error).
+		SetError(MntRestResult{}).
 		Get(path)
 
 	if err != nil {
@@ -669,7 +719,7 @@ func (s *MonitoringService) SessionDisconnect(ENDPOINTIP string, PSNNAME string,
 @param mac mac path parameter.
 @param duration duration path parameter.
 */
-func (s *MonitoringService) GetAccountStatusByMac(mac string, duration string) (*resty.Response, error) {
+func (s *MonitoringService) GetAccountStatusByMac(mac string, duration string) (*ResponseMonitoringGetDetailedSessions, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/AcctStatus/MACAddress/{mac}/{duration}"
 	path = strings.Replace(path, "{mac}", fmt.Sprintf("%v", mac), -1)
@@ -679,21 +729,28 @@ func (s *MonitoringService) GetAccountStatusByMac(mac string, duration string) (
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetError(&Error).
+		SetError(MntRestResult{}).
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetAccountStatusByMac")
+		r := response.StatusCode()
+		if (r >= 500 && r < 600 ) {
+			err := response.Error().(*MntRestResult)
+			return nil, response, fmt.Errorf("error with operation GetAccountStatusByMac - %s - %s\n", err.Description, err.InternalErrorInfo)
+		} else {
+			return nil, response, fmt.Errorf("error with operation GetAccountStatusByMac - HTTP Status: %d\n", r)
+		}
 	}
 
 	getCSFRToken(response.Header())
 
-	return response, err
+	result := response.Result().(*ResponseMonitoringGetDetailedSessions)
+	return result, response, err
 
 }
 
