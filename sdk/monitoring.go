@@ -12,118 +12,118 @@ import (
 type MonitoringService service
 
 type Session struct {
-	Server            *string   `xml:"server"`
-	CallingStationID  *string   `xml:"calling_station_id"`
-	AuditSessionID    *string   `xml:"audit_session_id"`
-	AcctSessionID     *string   `xml:"acct_session_id"`
-	NASIPAddress      *string   `xml:"nas_ip_address"`
-	NASIPv6Address    *string   `xml:"nas_ipv6_address"`
-	UserName          *string   `xml:"user_name"`
-	FramedIPv6Address []*string `xml:"framed_ipv6_address>ipv6_address"`
+	AcctSessionID     string   `xml:"acct_session_id"`
+	AuditSessionID    string   `xml:"audit_session_id"`
+	CallingStationID  string   `xml:"calling_station_id"`
+	FramedIPv6Address []string `xml:"framed_ipv6_address>ipv6_address"`
+	NASIPAddress      string   `xml:"nas_ip_address"`
+	NASIPv6Address    string   `xml:"nas_ipv6_address"`
+	Server            string   `xml:"server"`
+	UserName          string   `xml:"user_name"`
 }
 
 type SessionParameters struct {
-	Passed                      *string   `xml:"passed"`
-	Failed                      *string   `xml:"failed"`
-	UserName                    *string   `xml:"user_name"`
-	NASIPAddress                *string   `xml:"nas_ip_address"`
-	FailureReason               *string   `xml:"failure_reason"`
-	CallingStationId            *string   `xml:"calling_station_id"`
-	NASPort                     *string   `xml:"nas_port"`
-	IdentityGroup               *string   `xml:"identity_group"`
-	NetworkDeviceName           *string   `xml:"network_device_name"`
-	ACSServer                   *string   `xml:"acs_server"`
-	AuthenProtocol              *string   `xml:"authen_protocol"`
-	FramedIPAddress             []*string `xml:"framed_ip_address>ip_address"`
-	NetworkDeviceGroups         *string   `xml:"network_device_groups"`
-	AccessService               *string   `xml:"access_service"`
-	AuthACSTimestamp            *string   `xml:"auth_acs_timestamp"`
-	AuthenticationMethod        *string   `xml:"authentication_method"`
-	ExecutionSteps              *string   `xml:"execution_steps"`
-	RadiusResponse              *string   `xml:"radius_response"`
-	AuditSessionID              *string   `xml:"audit_session_id"`
-	NASIdentifier               *string   `xml:"nas_identifier"`
-	NASPortID                   *string   `xml:"nas_port_id"`
-	NACPolicyCompliance         *string   `xml:"nac_policy_compliance"`
-	AuthID                      *int      `xml:"auth_id"`
-	AuthACSViewTimestamp        *string   `xml:"auth_acsview_timestamp"`
-	MessageCode                 *string   `xml:"message_code"`
-	ACSSessionID                *string   `xml:"acs_session_id"`
-	ServiceSelectionPolicy      *string   `xml:"service_selection_policy"`
-	AuthorizationPolicy         *string   `xml:"authorization_policy"`
-	IdentityStore               *string   `xml:"identity_store"`
-	Response                    *string   `xml:"response"`
-	ServiceType                 *string   `xml:"service_type"`
-	CTSSecurityGroup            *string   `xml:"cts_security_group"`
-	UseCase                     *string   `xml:"use_case"`
-	CiscoAVPair                 *string   `xml:"cisco_av_pair"`
-	ADDomain                    *string   `xml:"ad_domain"`
-	ACSUsername                 *string   `xml:"acs_username"`
-	RadiusUsername              *string   `xml:"radius_username"`
-	NACRole                     *string   `xml:"nac_role"`
-	NACUsername                 *string   `xml:"nac_username"`
-	NACPostureToken             *string   `xml:"nac_posture_token"`
-	NACRadiusIsUserAuth         *string   `xml:"nac_radius_is_user_auth"`
-	SelectedPostureServer       *string   `xml:"selected_posture_server"`
-	SelectedIdentityStore       *string   `xml:"selected_identity_store"`
-	AuthenticationIdentityStore *string   `xml:"authentication_identity_store"`
-	AZNExpPolMatchedRule        *string   `xml:"azn_exp_pol_matched_rule"`
-	ExtPolServerMatchedRule     *string   `xml:"ext_pol_server_matched_rule"`
-	GRPMappingPolMatchedRule    *string   `xml:"grp_mapping_pol_matched_rule"`
-	IdentityPolicyMatchedRule   *string   `xml:"identity_policy_matched_rule"`
-	NASPortType                 *string   `xml:"nas_port_type"`
-	QueryIdentityStores         *string   `xml:"query_identity_stores"`
-	SelectedAZNProfiles         *string   `xml:"selected_azn_profiles"`
-	SelExpAZNProfiles           *string   `xml:"sel_exp_azn_profiles"`
-	SelectedQueryIdentityStores *string   `xml:"selected_query_identity_stores"`
-	EAPTunnel                   *string   `xml:"eap_tunnel"`
-	TunnelDetails               *string   `xml:"tunnel_details"`
-	Ciscoh323Attributes         *string   `xml:"cisco_h323_attributes"`
-	CiscoSSGAttributes          *string   `xml:"cisco_ssg_attributes"`
-	OtherAttributes             *string   `xml:"other_attributes"`
-	ResponseTime                *int      `xml:"response_time"`
-	NADFailure                  *string   `xml:"nad_failure"`
-	DestinationIPAddress        *string   `xml:"destination_ip_address"`
-	AcctID                      *int      `xml:"acct_id"`
-	AcctACSTimestamp            *string   `xml:"acct_acs_timestamp"`
-	AcctACSViewTimestamp        *string   `xml:"acct_acsview_timestamp"`
-	AcctSessionID               *string   `xml:"acct_session_id"`
-	AcctStatusType              *string   `xml:"acct_status_type"`
-	AcctSessionTime             *int      `xml:"acct_session_time"`
-	AcctInputOctets             *string   `xml:"acct_input_octets"`
-	AcctOutputOctets            *string   `xml:"acct_output_octets"`
-	AcctInputPackets            *int      `xml:"acct_input_packets"`
-	AcctOutputPackets           *int      `xml:"acct_output_packets"`
-	AcctClass                   *string   `xml:"acct_class"`
-	AcctTerminateCause          *string   `xml:"acct_terminate_cause"`
-	AcctMultiSessionID          *string   `xml:"acct_multi_session_id"`
-	AcctAuthentic               *string   `xml:"acct_authentic"`
-	TerminationAction           *string   `xml:"termination_action"`
-	SessionTimeout              *string   `xml:"session_timeout"`
-	IdleTimeout                 *string   `xml:"idle_timeout"`
-	AcctInterimInterval         *string   `xml:"acct_interim_interval"`
-	AcctDelayTime               *string   `xml:"acct_delay_time"`
-	EventTimestamp              *string   `xml:"event_timestamp"`
-	AcctTunnelConnection        *string   `xml:"acct_tunnel_connection"`
-	AcctTunnelPacketLost        *string   `xml:"acct_tunnel_packet_lost"`
-	SecurityGroup               *string   `xml:"security_group"`
-	Ciscoh323SetupTime          *string   `xml:"cisco_h323_setup_time"`
-	Ciscoh323ConnectTime        *string   `xml:"cisco_h323_connect_time"`
-	Ciscoh323DisconnectTime     *string   `xml:"cisco_h323_disconnect_time"`
-	FramedProtocol              *string   `xml:"framed_protocol"`
-	Started                     *string   `xml:"started"`
-	Stopped                     *string   `xml:"stopped"`
-	CkptID                      *int      `xml:"ckpt_id"`
-	Type                        *int      `xml:"type"`
-	NADACSViewTimestamp         *string   `xml:"nad_acsview_timestamp"`
-	VLAN                        *string   `xml:"vlan"`
-	DACL                        *string   `xml:"dacl"`
-	AuthenticationType          *string   `xml:"authentication_type"`
-	InterfaceName               *string   `xml:"interface_name"`
-	Reason                      *string   `xml:"reason"`
-	EndpointPolicy              *string   `xml:"endpoint_policy"`
-	FramedIPv6Address           []*string `xml:"framed_ipv6_address>ipv6_address"`
-	NASIPv6Address              *string   `xml:"nas_ipv6_address"`
+	ACSServer                   string   `xml:"acs_server"`
+	ACSSessionID                string   `xml:"acs_session_id"`
+	ACSUsername                 string   `xml:"acs_username"`
+	ADDomain                    string   `xml:"ad_domain"`
+	AZNExpPolMatchedRule        string   `xml:"azn_exp_pol_matched_rule"`
+	AccessService               string   `xml:"access_service"`
+	AuthenticationIdentityStore string   `xml:"authentication_identity_store"`
+	AuthorizationPolicy         string   `xml:"authorization_policy"`
+	AcctACSTimestamp            string   `xml:"acct_acs_timestamp"`
+	AcctACSViewTimestamp        string   `xml:"acct_acsview_timestamp"`
+	AcctAuthentic               string   `xml:"acct_authentic"`
+	AcctClass                   string   `xml:"acct_class"`
+	AcctDelayTime               string   `xml:"acct_delay_time"`
+	AcctID                      string   `xml:"acct_id"`
+	AcctInputOctets             string   `xml:"acct_input_octets"`
+	AcctInputPackets            string   `xml:"acct_input_packets"`
+	AcctInterimInterval         string   `xml:"acct_interim_interval"`
+	AcctOutputOctets            string   `xml:"acct_output_octets"`
+	AcctOutputPackets           string   `xml:"acct_output_packets"`
+	AcctSessionID               string   `xml:"acct_session_id"`
+	AcctSessionTime             string   `xml:"acct_session_time"`
+	AcctStatusType              string   `xml:"acct_status_type"`
+	AcctTerminateCause          string   `xml:"acct_terminate_cause"`
+	AcctTunnelConnection        string   `xml:"acct_tunnel_connection"`
+	AcctTunnelPacketLost        string   `xml:"acct_tunnel_packet_lost"`
+	AcctMultiSessionID          string   `xml:"acct_multi_session_id"`
+	AuditSessionID              string   `xml:"audit_session_id"`
+	AuthACSTimestamp            string   `xml:"auth_acs_timestamp"`
+	AuthACSViewTimestamp        string   `xml:"auth_acsview_timestamp"`
+	AuthID                      string   `xml:"auth_id"`
+	AuthenProtocol              string   `xml:"authen_protocol"`
+	AuthenticationMethod        string   `xml:"authentication_method"`
+	AuthenticationType          string   `xml:"authentication_type"`
+	CTSSecurityGroup            string   `xml:"cts_security_group"`
+	CallingStationID            string   `xml:"calling_station_id"`
+	CiscoAVPair                 string   `xml:"cisco_av_pair"`
+	CiscoSSGAttributes          string   `xml:"cisco_ssg_attributes"`
+	Ciscoh323Attributes         string   `xml:"cisco_h323_attributes"`
+	Ciscoh323ConnectTime        string   `xml:"cisco_h323_connect_time"`
+	Ciscoh323DisconnectTime     string   `xml:"cisco_h323_disconnect_time"`
+	Ciscoh323SetupTime          string   `xml:"cisco_h323_setup_time"`
+	CkptID                      string   `xml:"ckpt_id"`
+	DACL                        string   `xml:"dacl"`
+	DestinationIPAddress        string   `xml:"destination_ip_address"`
+	EAPTunnel                   string   `xml:"eap_tunnel"`
+	EndpointPolicy              string   `xml:"endpoint_policy"`
+	EventTimestamp              string   `xml:"event_timestamp"`
+	ExecutionSteps              string   `xml:"execution_steps"`
+	ExtPolServerMatchedRule     string   `xml:"ext_pol_server_matched_rule"`
+	Failed                      string   `xml:"failed"`
+	FailureReason               string   `xml:"failure_reason"`
+	FramedIPAddress             string   `xml:"ip_address"`
+	FramedIPv6Address           []string `xml:"framed_ipv6_address>ipv6_address"`
+	FramedProtocol              string   `xml:"framed_protocol"`
+	GRPMappingPolMatchedRule    string   `xml:"grp_mapping_pol_matched_rule"`
+	IdentityGroup               string   `xml:"identity_group"`
+	IdentityPolicyMatchedRule   string   `xml:"identity_policy_matched_rule"`
+	IdentityStore               string   `xml:"identity_store"`
+	IdleTimeout                 string   `xml:"idle_timeout"`
+	InterfaceName               string   `xml:"interface_name"`
+	MessageCode                 string   `xml:"message_code"`
+	NetworkDeviceGroups         string   `xml:"network_device_groups"`
+	NetworkDeviceName           string   `xml:"network_device_name"`
+	NACPolicyCompliance         string   `xml:"nac_policy_compliance"`
+	NACPostureToken             string   `xml:"nac_posture_token"`
+	NACRadiusIsUserAuth         string   `xml:"nac_radius_is_user_auth"`
+	NACRole                     string   `xml:"nac_role"`
+	NACUsername                 string   `xml:"nac_username"`
+	NADACSViewTimestamp         string   `xml:"nad_acsview_timestamp"`
+	NADFailure                  string   `xml:"nad_failure"`
+	NASIdentifier               string   `xml:"nas_identifier"`
+	NASIPAddress                string   `xml:"nas_ip_address"`
+	NASIPv6Address              string   `xml:"nas_ipv6_address"`
+	NASPort                     string   `xml:"nas_port"`
+	NASPortID                   string   `xml:"nas_port_id"`
+	NASPortType                 string   `xml:"nas_port_type"`
+	OtherAttributes             string   `xml:"other_attributes"`
+	Passed                      string   `xml:"passed"`
+	QueryIdentityStores         string   `xml:"query_identity_stores"`
+	Response                    string   `xml:"response"`
+	ResponseTime                string   `xml:"response_time"`
+	RadiusResponse              string   `xml:"radius_response"`
+	RadiusUsername              string   `xml:"radius_username"`
+	Reason                      string   `xml:"reason"`
+	SecurityGroup               string   `xml:"security_group"`
+	SelectedAZNProfiles         string   `xml:"selected_azn_profiles"`
+	SelectedIdentityStore       string   `xml:"selected_identity_store"`
+	SelectedPostureServer       string   `xml:"selected_posture_server"`
+	SelectedQueryIdentityStores string   `xml:"selected_query_identity_stores"`
+	SelExpAZNProfiles           string   `xml:"sel_exp_azn_profiles"`
+	ServiceType                 string   `xml:"service_type"`
+	ServiceSelectionPolicy      string   `xml:"service_selection_policy"`
+	SessionTimeout              string   `xml:"session_timeout"`
+	Started                     string   `xml:"started"`
+	Stopped                     string   `xml:"stopped"`
+	TerminationAction           string   `xml:"termination_action"`
+	TunnelDetails               string   `xml:"tunnel_details"`
+	Type                        string   `xml:"type"`
+	UseCase                     string   `xml:"use_case"`
+	UserName                    string   `xml:"user_name"`
+	VLAN                        string   `xml:"vlan"`
 }
 
 type ResponseMonitoringGetActiveCount struct {
@@ -148,9 +148,7 @@ type ResponseMonitoringGetProfilerCount struct {
 	Count *int `xml:"count,omitempty"` //
 }
 
-type ResponseMonitoringGetDetailedSessions struct {
-	SessionParameters []*SessionParameters `xml:"sessionParameters"`
-}
+type ResponseMonitoringGetDetailedSessions SessionParameters
 
 type ResponseMonitoringGetMntVersion struct {
 	XMLName    xml.Name `xml:"product"`
@@ -160,16 +158,16 @@ type ResponseMonitoringGetMntVersion struct {
 }
 
 type MntRestResult struct {
-	HTTPCode           string   `xml:"http-code"`
-	CPMCode            string   `xml:"cpm-code"`
-	Description        string   `xml:"description"`
-	ModuleName         string   `xml:"module-name"`
-	InternalErrorInfo  string   `xml:"internal-error-info"`
-	RequestedOperation string   `xml:"requested-operation"`
-	ResourceID         string   `xml:"resource-id"`
-	ResourceName       string   `xml:"resource-name"`
-	ResourceType       string   `xml:"resource-type"`
-	Status             string   `xml:"status"`
+	CPMCode            string `xml:"cpm-code"`
+	Description        string `xml:"description"`
+	HTTPCode           string `xml:"http-code"`
+	InternalErrorInfo  string `xml:"internal-error-info"`
+	ModuleName         string `xml:"module-name"`
+	RequestedOperation string `xml:"requested-operation"`
+	ResourceID         string `xml:"resource-id"`
+	ResourceName       string `xml:"resource-name"`
+	ResourceType       string `xml:"resource-type"`
+	Status             string `xml:"status"`
 }
 
 //GetActiveCount ActiveCount
@@ -357,7 +355,7 @@ func (s *MonitoringService) GetSessionsByMac(mac string) (*ResponseMonitoringGet
 
 	if response.IsError() {
 		r := response.StatusCode()
-		if (r >= 500 && r < 600 ) {
+		if (r >= 500 && r < 600) {
 			err := response.Error().(*MntRestResult)
 			return nil, response, fmt.Errorf("error with operation GetSessionsByMac - %s - %s\n", err.Description, err.InternalErrorInfo)
 		} else {
@@ -397,7 +395,7 @@ func (s *MonitoringService) GetSessionsByUsername(username string) (*ResponseMon
 
 	if response.IsError() {
 		r := response.StatusCode()
-		if (r >= 500 && r < 600 ) {
+		if (r >= 500 && r < 600) {
 			err := response.Error().(*MntRestResult)
 			return nil, response, fmt.Errorf("error with operation GetSessionsByUsername - %s - %s\n", err.Description, err.InternalErrorInfo)
 		} else {
@@ -437,7 +435,7 @@ func (s *MonitoringService) GetSessionsByNasIP(nasipv4 string) (*ResponseMonitor
 
 	if response.IsError() {
 		r := response.StatusCode()
-		if (r >= 500 && r < 600 ) {
+		if (r >= 500 && r < 600) {
 			err := response.Error().(*MntRestResult)
 			return nil, response, fmt.Errorf("error with operation GetSessionsByNasIP - %s - %s\n", err.Description, err.InternalErrorInfo)
 		} else {
@@ -477,7 +475,7 @@ func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*Respo
 
 	if response.IsError() {
 		r := response.StatusCode()
-		if (r >= 500 && r < 600 ) {
+		if (r >= 500 && r < 600) {
 			err := response.Error().(*MntRestResult)
 			return nil, response, fmt.Errorf("error with operation GetSessionsByEndpointIP - %s - %s\n", err.Description, err.InternalErrorInfo)
 		} else {
@@ -497,7 +495,7 @@ func (s *MonitoringService) GetSessionsByEndpointIP(endpointipv4 string) (*Respo
 
 @param sessionTypeID session_id path parameter.
 */
-func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*ResponseMonitoringGetDetailedSessions, *resty.Response, error) {
+func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*ResponseMonitoringGetActiveList, *resty.Response, error) {
 	setHost(s.client, "_mnt")
 	path := "/admin/API/mnt/Session/Active/SessionID/{session_id}/0"
 	path = strings.Replace(path, "{session_id}", fmt.Sprintf("%v", sessionTypeID), -1)
@@ -506,7 +504,7 @@ func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*Respo
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/xml").
 		SetHeader("Accept", "application/xml").
-		SetResult(&ResponseMonitoringGetDetailedSessions{}).
+		SetResult(&ResponseMonitoringGetActiveList{}).
 		SetError(MntRestResult{}).
 		Get(path)
 
@@ -517,7 +515,7 @@ func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*Respo
 
 	if response.IsError() {
 		r := response.StatusCode()
-		if (r >= 500 && r < 600 ) {
+		if (r >= 500 && r < 600) {
 			err := response.Error().(*MntRestResult)
 			return nil, response, fmt.Errorf("error with operation GetSessionsBySessionID - %s - %s\n", err.Description, err.InternalErrorInfo)
 		} else {
@@ -527,7 +525,7 @@ func (s *MonitoringService) GetSessionsBySessionID(sessionTypeID string) (*Respo
 
 	getCSFRToken(response.Header())
 
-	result := response.Result().(*ResponseMonitoringGetDetailedSessions)
+	result := response.Result().(*ResponseMonitoringGetActiveList)
 	return result, response, err
 
 }
@@ -622,7 +620,7 @@ func (s *MonitoringService) GetAuthenticationStatusByMac(MAC string, SECONDS str
 
 	if response.IsError() {
 		r := response.StatusCode()
-		if (r >= 500 && r < 600 ) {
+		if (r >= 500 && r < 600) {
 			err := response.Error().(*MntRestResult)
 			return nil, response, fmt.Errorf("error with operation GetAuthenticationStatusByMac - %s - %s\n", err.Description, err.InternalErrorInfo)
 		} else {
@@ -739,7 +737,7 @@ func (s *MonitoringService) GetAccountStatusByMac(mac string, duration string) (
 
 	if response.IsError() {
 		r := response.StatusCode()
-		if (r >= 500 && r < 600 ) {
+		if (r >= 500 && r < 600) {
 			err := response.Error().(*MntRestResult)
 			return nil, response, fmt.Errorf("error with operation GetAccountStatusByMac - %s - %s\n", err.Description, err.InternalErrorInfo)
 		} else {
