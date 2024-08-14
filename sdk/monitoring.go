@@ -30,7 +30,6 @@ type SessionParameters struct {
 	AZNExpPolMatchedRule        string   `xml:"azn_exp_pol_matched_rule"`
 	AccessService               string   `xml:"access_service"`
 	AuthenticationIdentityStore string   `xml:"authentication_identity_store"`
-	AuthorizationPolicy         string   `xml:"authorization_policy"`
 	AcctACSTimestamp            string   `xml:"acct_acs_timestamp"`
 	AcctACSViewTimestamp        string   `xml:"acct_acsview_timestamp"`
 	AcctAuthentic               string   `xml:"acct_authentic"`
@@ -55,7 +54,10 @@ type SessionParameters struct {
 	AuthID                      string   `xml:"auth_id"`
 	AuthenProtocol              string   `xml:"authen_protocol"`
 	AuthenticationMethod        string   `xml:"authentication_method"`
+	AuthenticationProtocol      string   `xml:"authentication_protocol"`
 	AuthenticationType          string   `xml:"authentication_type"`
+	AuthorizationPolicy         string   `xml:"authorization_policy"`
+	CPMSessionID                string   `xml:"cpm_session_id"`
 	CTSSecurityGroup            string   `xml:"cts_security_group"`
 	CallingStationID            string   `xml:"calling_station_id"`
 	CiscoAVPair                 string   `xml:"cisco_av_pair"`
@@ -67,6 +69,8 @@ type SessionParameters struct {
 	CkptID                      string   `xml:"ckpt_id"`
 	DACL                        string   `xml:"dacl"`
 	DestinationIPAddress        string   `xml:"destination_ip_address"`
+	DeviceIPAddress             string   `xml:"device_ip_address"`
+	DeviceType                  string   `xml:"device_type"`
 	EAPTunnel                   string   `xml:"eap_tunnel"`
 	EndpointPolicy              string   `xml:"endpoint_policy"`
 	EventTimestamp              string   `xml:"event_timestamp"`
@@ -83,9 +87,8 @@ type SessionParameters struct {
 	IdentityStore               string   `xml:"identity_store"`
 	IdleTimeout                 string   `xml:"idle_timeout"`
 	InterfaceName               string   `xml:"interface_name"`
+	Location                    string   `xml:"location"`
 	MessageCode                 string   `xml:"message_code"`
-	NetworkDeviceGroups         string   `xml:"network_device_groups"`
-	NetworkDeviceName           string   `xml:"network_device_name"`
 	NACPolicyCompliance         string   `xml:"nac_policy_compliance"`
 	NACPostureToken             string   `xml:"nac_posture_token"`
 	NACRadiusIsUserAuth         string   `xml:"nac_radius_is_user_auth"`
@@ -99,22 +102,26 @@ type SessionParameters struct {
 	NASPort                     string   `xml:"nas_port"`
 	NASPortID                   string   `xml:"nas_port_id"`
 	NASPortType                 string   `xml:"nas_port_type"`
+	NetworkDeviceGroups         string   `xml:"network_device_groups"`
+	NetworkDeviceName           string   `xml:"network_device_name"`
+	OrigCallingStationId        string   `xml:"orig_calling_station_id"`
 	OtherAttributes             string   `xml:"other_attributes"`
 	Passed                      string   `xml:"passed"`
+	PostureStatus               string   `xml:"posture_status"`
 	QueryIdentityStores         string   `xml:"query_identity_stores"`
-	Response                    string   `xml:"response"`
-	ResponseTime                string   `xml:"response_time"`
 	RadiusResponse              string   `xml:"radius_response"`
 	RadiusUsername              string   `xml:"radius_username"`
+	Response                    string   `xml:"response"`
+	ResponseTime                string   `xml:"response_time"`
 	Reason                      string   `xml:"reason"`
 	SecurityGroup               string   `xml:"security_group"`
+	SelExpAZNProfiles           string   `xml:"sel_exp_azn_profiles"`
 	SelectedAZNProfiles         string   `xml:"selected_azn_profiles"`
 	SelectedIdentityStore       string   `xml:"selected_identity_store"`
 	SelectedPostureServer       string   `xml:"selected_posture_server"`
 	SelectedQueryIdentityStores string   `xml:"selected_query_identity_stores"`
-	SelExpAZNProfiles           string   `xml:"sel_exp_azn_profiles"`
-	ServiceType                 string   `xml:"service_type"`
 	ServiceSelectionPolicy      string   `xml:"service_selection_policy"`
+	ServiceType                 string   `xml:"service_type"`
 	SessionTimeout              string   `xml:"session_timeout"`
 	Started                     string   `xml:"started"`
 	Stopped                     string   `xml:"stopped"`
