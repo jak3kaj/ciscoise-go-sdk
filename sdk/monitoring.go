@@ -9,7 +9,11 @@ import (
 	"github.com/go-resty/resty/v2"
 )
 
+// Renaming type to line up with Cisco ISE API documentation
 type MonitoringService service
+
+// Alias for backwards compatibility with original SDK
+type MiscService = MonitoringService
 
 type Session struct {
 	AcctSessionID     string   `xml:"acct_session_id"`

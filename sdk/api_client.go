@@ -97,6 +97,7 @@ type Client struct {
 	InternalUser                                          *InternalUserService
 	Licensing                                             *LicensingService
 	Mdm                                                   *MdmService
+	Misc                                                  *MiscService
 	Monitoring                                            *MonitoringService
 	MyDevicePortal                                        *MyDevicePortalService
 	NativeIPsec                                           *NativeIPsecService
@@ -338,6 +339,7 @@ func NewClient() (*Client, error) {
 	c.InternalUser = (*InternalUserService)(&c.common)
 	c.Licensing = (*LicensingService)(&c.common)
 	c.Mdm = (*MdmService)(&c.common)
+	c.Misc = (*MiscService)(&c.common)
 	c.Monitoring = (*MonitoringService)(&c.common)
 	c.MyDevicePortal = (*MyDevicePortalService)(&c.common)
 	c.NativeIPsec = (*NativeIPsecService)(&c.common)
